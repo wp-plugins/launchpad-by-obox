@@ -38,7 +38,7 @@
 	}
 	
 	function template_uri(){
-		$template_path = plugins_url("launchpad/")."themes";
+		$template_path = plugins_url("launchpad-by-obox/")."themes";
 		return $template_path;
 	}
 	
@@ -84,18 +84,18 @@
 				wp_enqueue_script( 'jquery-ui-droppable' );
 				wp_enqueue_script( 'jquery-ui-sortable' );
 				wp_enqueue_script( 'jquery-ui-sortable' );
-				wp_enqueue_script( 'ui-jquery', plugins_url('launchpad/js/jquery-ui.min.js'), array( 'jquery' ) );
-				wp_enqueue_script( 'ui-jquery-timepicker', plugins_url('launchpad/js/jquery.timepicker.js'), array( 'jquery' ) );
-				wp_enqueue_script( 'jquery-checkboxes', plugins_url('launchpad/js/jquery.checkboxes.js'), array( 'jquery' ) );				
-				wp_enqueue_script( 'apollo-admin', plugins_url('launchpad/js/admin.js'), array( 'jquery' ) );
+				wp_enqueue_script( 'ui-jquery', plugins_url('launchpad-by-obox/js/jquery-ui.min.js'), array( 'jquery' ) );
+				wp_enqueue_script( 'ui-jquery-timepicker', plugins_url('launchpad-by-obox/js/jquery.timepicker.js'), array( 'jquery' ) );
+				wp_enqueue_script( 'jquery-checkboxes', plugins_url('launchpad-by-obox/js/jquery.checkboxes.js'), array( 'jquery' ) );				
+				wp_enqueue_script( 'apollo-admin', plugins_url('launchpad-by-obox/js/admin.js'), array( 'jquery' ) );
 				wp_localize_script( 'apollo-admin', 'base', plugins_url('launchpad'));
 				wp_enqueue_script( 'theme-preview' );
 				add_thickbox(); 
 
 				// Styles
-				wp_register_style( 'apollo-admin', plugins_url("launchpad/css/admin.css"));
-				wp_register_style( 'ui-jquery-style', plugins_url("launchpad/css/jquery-ui.css"));
-				wp_register_style( 'jquery-checkbox', plugins_url("launchpad/css/checkboxes.css"));
+				wp_register_style( 'apollo-admin', plugins_url("launchpad-by-obox/css/admin.css"));
+				wp_register_style( 'ui-jquery-style', plugins_url("launchpad-by-obox/css/jquery-ui.css"));
+				wp_register_style( 'jquery-checkbox', plugins_url("launchpad-by-obox/css/checkboxes.css"));
 				
 				wp_enqueue_style( 'apollo-admin' );
 				wp_enqueue_style( 'ui-jquery-style' );
@@ -106,8 +106,8 @@
 		// Front end scripts
 		else :
 			$apollo_options =  get_option("apollo_display_options");
-			wp_enqueue_script( "countdown-jquery", plugins_url("launchpad/js/jquery.countdown.js"), array( "jquery" ) );
-			wp_enqueue_script( "apollo", plugins_url("launchpad/js/jquery.apollo.js"), array( "jquery" ) );
+			wp_enqueue_script( "countdown-jquery", plugins_url("launchpad-by-obox/js/jquery.countdown.js"), array( "jquery" ) );
+			wp_enqueue_script( "apollo", plugins_url("launchpad-by-obox/js/jquery.apollo.js"), array( "jquery" ) );
 			$date = date("F d, Y G:i:s", strtotime($apollo_options["launchdate"]));
 			wp_localize_script( "apollo", "date", $date);
 		endif;
@@ -121,7 +121,7 @@
 		wp_enqueue_style( 'apollo-color' );
 		
 		if(isset($apollo_theme_options["font"]) && $apollo_theme_options["font"] != "") :
-			wp_register_style( 'apollo-fonts', plugins_url("launchpad/").'css/fonts/' . $apollo_theme_options["font"] . '.css');
+			wp_register_style( 'apollo-fonts', plugins_url("launchpad-by-obox/").'css/fonts/' . $apollo_theme_options["font"] . '.css');
 			wp_enqueue_style( 'apollo-fonts' );
 		endif;
 		

@@ -4,11 +4,11 @@
    	Plugin URI: http://obox-design.com
    	Description: The best looking maintenance plugin on the net
 	Author: Obox Design
-	Version: 1.0
+	Version: 1.0.1
 	Author URI: http://www.obox-design.com
 */
 
-define("LAUNCHPADDIR", ABSPATH."wp-content/plugins/launchpad/");
+define("LAUNCHPADDIR", ABSPATH."wp-content/plugins/launchpad-by-obox/");
 
 /*******************/
 /* Kick off Plugin */
