@@ -3,7 +3,7 @@ Contributors: obox
 Tags: maintenance mode, landing page
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,3 +104,6 @@ Yep, you can even set the security levels of who can view the front end while lo
 
 = 1.0 =
 * Launchpad launched.
+
+= 1.0.1 =
+* Updated folder name from /launchpad to /launchpad-by-obox due to WordPress folder naming convention
