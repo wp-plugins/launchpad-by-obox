@@ -102,8 +102,9 @@ Yep, you can even set the security levels of who can view the front end while lo
 
 == Changelog ==
 
+= 1.0.1 =
+* Updated folder name from /launchpad to /launchpad-by-obox due to WordPress folder naming convention
+
 = 1.0 =
 * Launchpad launched.
 
-= 1.0.1 =
-* Updated folder name from /launchpad to /launchpad-by-obox due to WordPress folder naming convention
