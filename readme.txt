@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: obox
-Tags: maintenance mode, landing page
+Tags: maintenance mode, landing page, splash screen
 Requires at least: 3.3
 Tested up to: 3.4
 Stable tag: 1.0.2
