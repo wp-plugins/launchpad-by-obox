@@ -93,10 +93,10 @@
 				add_thickbox(); 
 
 				// Styles
-				wp_register_style( 'apollo-admin', plugins_url("launchpad-by-obox/css/admin.css"));
+				wp_enqueue_style( 'apollo-admin', plugins_url("launchpad-by-obox/css/admin.css"));
 				wp_register_style( 'ui-jquery-style', plugins_url("launchpad-by-obox/css/jquery-ui.css"));
 				wp_register_style( 'jquery-checkbox', plugins_url("launchpad-by-obox/css/checkboxes.css"));
-				
+
 				wp_enqueue_style( 'apollo-admin' );
 				wp_enqueue_style( 'ui-jquery-style' );
 				wp_enqueue_style( 'jquery-checkbox' );
@@ -110,6 +110,28 @@
 			wp_enqueue_script( "apollo", plugins_url("launchpad-by-obox/js/jquery.apollo.js"), array( "jquery" ) );
 			$date = date("F d, Y G:i:s", strtotime($apollo_options["launchdate"]));
 			wp_localize_script( "apollo", "date", $date);
+		endif;
+	}
+	function admin_styles(){
+		global $pagenow;
+		
+		// jQuery inclusion
+		wp_enqueue_script( "jquery");
+		
+		// Admin Scripts
+		if(is_admin()) :
+			if(isset($_REQUEST['page']) && $_REQUEST['page'] == "apollo_general_settings") :
+				// Styles
+				wp_register_style( 'apollo-admin', plugins_url("launchpad-by-obox/css/admin.css"));
+				wp_register_style( 'ui-jquery-style', plugins_url("launchpad-by-obox/css/jquery-ui.css"));
+				wp_register_style( 'jquery-checkbox', plugins_url("launchpad-by-obox/css/checkboxes.css"));
+
+				wp_enqueue_style( 'apollo-admin' );
+				wp_enqueue_style( 'ui-jquery-style' );
+				wp_enqueue_style( 'jquery-checkbox' );
+				wp_enqueue_style( 'thickbox-css' );
+
+			endif;
 		endif;
 	}
 	
@@ -209,6 +231,7 @@
 		//Scripts we can load without the plugin being active
 		add_filter( 'script_loader_src', array( &$this, 'remove_src_version') );
 		add_filter( 'style_loader_src', array( &$this, 'remove_src_version') );
+		add_action( 'admin_print_styles', array(&$this, 'admin_styles'));
 		add_action( 'admin_print_scripts', array(&$this, 'scripts'));
 		add_action( 'admin_bar_menu', array(&$this, 'active_warning'), 100);
 	}

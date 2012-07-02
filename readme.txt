@@ -102,6 +102,9 @@ Yep, you can even set the security levels of who can view the front end while lo
 
 == Changelog ==
 
+= 1.0.3 =
+* Fixed missing admin styling
+
 = 1.0.2 =
 * Fixed the broken files from 1.0.1. Issues with WP SVN
 

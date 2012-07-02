@@ -4,7 +4,7 @@
    	Plugin URI: http://obox-design.com
    	Description: The best looking maintenance plugin on the net
 	Author: Obox Design
-	Version: 1.0.2
+	Version: 1.0.3
 	Author URI: http://www.obox-design.com
 */
 

@@ -38,23 +38,23 @@
 		return $html;
 	}
 	function apollo_general_options_callback() {
-		echo '<p>Activate your landing page, set the launch date and add your copy. Get started here!' . $this->buttons() . '</p>';
+		echo '<p class="top">Activate your landing page, set the launch date and add your copy. Get started here!' . $this->buttons() . '</p>';
 	} // end apollo_general_options_callback
 	
 	function apollo_social_options_callback() {
-		echo '<p>Enter in your social network URLs. Leave blank to hide the buttons.' . $this->buttons() . '</p>';
+		echo '<p class="top">Enter in your social network URLs. Leave blank to hide the buttons.' . $this->buttons() . '</p>';
 	} // end apollo_general_options_callback
 	
 	function apollo_theme_options_callback() {
-		echo '<p>Setup the look &amp; feel of your launch page.' . $this->buttons() . '</p>';
+		echo '<p class="top">Setup the look &amp; feel of your launch page.' . $this->buttons() . '</p>';
 	} // end apollo_general_options_callback
 	
 	function apollo_order_options_callback() {
-		echo '<p>Dictate the order of the elements on the home page.' . $this->buttons() . '</p>';
+		echo '<p class="top">Dictate the order of the elements on the home page.' . $this->buttons() . '</p>';
 	} // end apollo_general_options_callback
 	
 	function apollo_css_options_callback() {
-		echo '<p>If you want to fully cusomize your landing page, add your custom CSS here.' . $this->buttons() . '</p>';
+		echo '<p class="top">If you want to fully cusomize your landing page, add your custom CSS here.' . $this->buttons() . '</p>';
 	} // end apollo_general_options_callback
 	
 	
@@ -75,7 +75,7 @@
 			<form  method="post" action="options.php" enctype="multipart/form-data">
 				<?php settings_fields('apollo_'.$active_tab.'_options'); ?>
 				<?php do_settings_sections( 'apollo_'.$active_tab.'_options' ); ?>
-				<p><span><?php echo $this->buttons(); ?></span></p>
+				<p><?php echo $this->buttons(); ?></p>
 			</form>
 	
 		</div><!-- /.wrap -->
