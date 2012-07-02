@@ -2,8 +2,8 @@
 Contributors: obox
 Tags: maintenance mode, landing page, splash screen
 Requires at least: 3.3
-Tested up to: 3.4
-Stable tag: 1.0.2
+Tested up to: 3.4.1
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
