@@ -134,15 +134,7 @@
 		);
 		
 		add_settings_field(
-			'subscription_username', 'Campaign Monitor Username', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('subscription_username', 'text', '', 'Once you have filled out your Campaign Monitor username, the newsletter signup form will appear.')
-		);
-		
-		add_settings_field(
-			'subscription_title', 'Signup Title', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('subscription_title', 'text', '', 'Newsletter signup form title.')
-		);
-		
-		add_settings_field(
-			'subscription_button', 'Signup Button Text', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('subscription_button', 'text', 'Subscribe', 'Newsletter signup form title.')
+			'subscription_embed', 'Newsletter Embed Code', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('subscription_embed', 'memo', 'Subscribe', 'Newsletter signup form embed code.')
 		);
 		
 		
