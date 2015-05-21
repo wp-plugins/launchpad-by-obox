@@ -2,10 +2,12 @@
 {
 	function init() {
 		add_action( 'admin_menu', array(&$this, 'apollo_menu'));
-		add_action( 'admin_init', array(&$this, 'home_page_order_fallback'));
+		add_action( 'admin_init', array(&$this,
+			'home_page_order_fallback'));
 		add_action( 'admin_init', array(&$this, 'apollo_initialize_options'));
 		if(isset($_GET["refresh"]))
-			add_action( 'admin_init', array(&$this, 'clear_options'));
+			add_action( 'admin_init', array(&$this,
+			'clear_options'));
 	}
 
 	function clear_options(){
@@ -25,7 +27,11 @@
 	}
 
 	function apollo_menu() {
-		$this->pagehook = add_object_page( 'Launchpad', 'Launchpad', 'administrator', 'apollo_general_settings', array(&$this, 'apollo_display'), 'http://obox-design.com/images/ocmx-favicon.png' );
+		$this->pagehook = add_object_page( 'Launchpad',
+			'Launchpad',
+			'administrator',
+			'apollo_general_settings', array(&$this, 'apollo_display'),
+			'http://obox-design.com/images/ocmx-favicon.png' );
 	}
 
 	function buttons(){
@@ -38,45 +44,67 @@
 		return $html;
 	}
 	function apollo_general_options_callback() {
-		echo '<p class="top">Activate your landing page, set the launch date and add your copy. Get started here!' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'Activate your landing page, set the launch date and add your copy. Get started here!</p>';
 	} // end apollo_general_options_callback
 
 	function apollo_social_options_callback() {
-		echo '<p class="top">Enter in your social network URLs. Leave blank to hide the buttons.' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'Enter in your social network URLs. Leave blank to hide the buttons.</p>';
 	} // end apollo_general_options_callback
 
 	function apollo_theme_options_callback() {
-		echo '<p class="top">Setup the look &amp; feel of your launch page.' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'Setup the look &amp; feel of your launch page.</p>';
 	} // end apollo_general_options_callback
 
 	function apollo_order_options_callback() {
-		echo '<p class="top">Dictate the order of the elements on the home page.' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'Dictate the order of the elements on the home page.</p>';
 	} // end apollo_general_options_callback
 
 	function apollo_css_options_callback() {
-		echo '<p class="top">If you want to fully cusomize your landing page, add your custom CSS here.' . $this->buttons() . '</p>';
+		echo '<p class="top">' . $this->buttons() . 'If you want to fully cusomize your landing page, add your custom CSS here.</p>';
 	} // end apollo_general_options_callback
 
 
 
 	function apollo_display() {
-		$tabs = array("display" => "General", "theme" => "Look & Feel", "social" => "Social Links", "order" => "Page Elements Order", "css" => "Custom CSS");
+		$tabs = array(
+				"display" => "General",
+				"theme" => "Look & Feel",
+				"social" => "Social Links",
+				"order" => "Page Elements Order",
+				"css" => "Custom CSS"
+			);
+
 		$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'display'; ?>
+
 		<!-- Create a header in the default WordPress 'wrap' container -->
 		<div class="wrap">
-			<div id="icon-themes" class="icon32"></div>
-			<h2>Launchpad</h2>
-			<?php settings_errors(); ?>
-			<h2 class="nav-tab-wrapper">
-				<?php foreach($tabs as $tab => $label) : ?>
-				<a href="?page=apollo_general_settings&tab=<?php echo $tab; ?>" class="nav-tab <?php echo $active_tab == $tab ? 'nav-tab-active' : ''; ?>"><?php echo $label; ?></a>
-				<?php endforeach; ?>
-			</h2>
-			<form  method="post" action="options.php" enctype="multipart/form-data">
-				<?php settings_fields('apollo_'.$active_tab.'_options'); ?>
-				<?php do_settings_sections( 'apollo_'.$active_tab.'_options' ); ?>
-				<p><?php echo $this->buttons(); ?></p>
-			</form>
+
+			<div class="promo-layers">
+				<h4>Try Layers</h4>
+				<p>Setting up a new site? Why not try Layers? A revolutionary site builder specifically for WordPress.</p>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/lRogY6qKBvQ" frameborder="0" allowfullscreen></iframe>
+				<p>
+					<a href="http://www.layerswp.com/" target="_blank">Layers</a> is a revolutionary new site builder that makes creating beautiful, responsive websites, fast, fun and easy.
+				</p>
+				<a class="go-to-layers" href="http://www.layerswp.com/" target="_blank">Find out more</a>
+			</div>
+
+			<div class="lp-settings-section">
+
+				<h2>Launchpad</h2>
+				<?php settings_errors(); ?>
+				<h2 class="nav-tab-wrapper">
+					<?php foreach($tabs as $tab => $label) : ?>
+						<a href="?page=apollo_general_settings&tab=<?php echo $tab; ?>" class="nav-tab <?php echo $active_tab == $tab ? 'nav-tab-active' : ''; ?>"><?php echo $label; ?></a>
+					<?php endforeach; ?>
+				</h2>
+
+				<form method="post" action="options.php" enctype="multipart/form-data" class="launchpad-form">
+					<?php do_settings_sections( 'apollo_'.$active_tab.'_options' ); ?>
+					<?php settings_fields('apollo_'.$active_tab.'_options'); ?>
+					<p><?php echo $this->buttons(); ?></p>
+				</form>
+			</div>
 
 		</div><!-- /.wrap -->
 	<?php
@@ -86,6 +114,7 @@
 		$apollo = new apollo_launchpad();
 		$template = $apollo->template();
 		$templateuri = $apollo->template_uri();
+
 		// If the theme options don't exist, create them.
 		if(!get_option('apollo_display_options')) :
 			add_option('apollo_display_options');
@@ -99,7 +128,14 @@
 		);
 
 		add_settings_field(
-			'active', 'Activate Launchpad', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('active', 'checkbox', 0, '') // ID, Input Type, Default, Excerpt, Options (if Select box) Check this ON to activate launchpad.
+			'active',
+			'Activate Launchpad',
+			array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings',
+			array('active',
+			'checkbox', 0,
+			'') // ID, Input Type, Default, Excerpt, Options (if Select box) Check this ON to activate launchpad.
 		);
 
 		$options = array();
@@ -110,53 +146,90 @@
 		endforeach;
 
 		add_settings_field(
-			'launchdate', 'Launch Date', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('launchdate', 'date', date("Y/m/d G:i:s", time()), 'When does your site launch?')
+			'launchdate',
+			'Launch Date', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('launchdate',
+			'date', date("Y/m/d G:i:s", time()),
+			'When does your site launch?')
 		);
 
 		add_settings_field(
-			'automatic_launch', 'Automatic Launch', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('automatic_launch', 'checkbox', 0, 'Check this ON to automatically disable the plugin after the launch date.') // ID, Input Type, Default, Excerpt, Options (if Select box)
+			'automatic_launch',
+			'Automatic Launch', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('automatic_launch',
+			'checkbox', 0,
+			'Check this ON to automatically disable the plugin after the launch date.') // ID, Input Type, Default, Excerpt, Options (if Select box)
 		);
 
 		add_settings_field(
-			'display_tagline', 'Display Site Tagline', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('display_tagline', 'checkbox', 1, '') // ID, Input Type, Default, Excerpt, Options (if Select box)
+			'display_tagline',
+			'Display Site Tagline', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('display_tagline', 'checkbox', 1, '') // ID, Input Type, Default, Excerpt, Options (if Select box)
 		);
 
 		add_settings_field(
-			'title', 'Introduction Title', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('title', 'text', 'Welcome!')
+			'title',
+			'Introduction Title', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('title', 'text', 'Welcome!')
 		);
 
 		add_settings_field(
-			'intro', 'Introduction Copy', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('intro', 'memo', 'We are launching a new site very soon! Be sure to return later.')
+			'intro',
+			'Introduction Copy', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('intro', 'memo', 'We are launching a new site very soon! Be sure to return later.')
 		);
 
 		add_settings_field(
-			'video', 'Intro Video', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('video', 'text', '', 'If you have a video, enter it\'s URL here.')
+			'video',
+			'Intro Video', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('video',
+			'text',
+			'',
+			'If you have a video, enter it\'s URL here.')
 		);
 
 		add_settings_field(
-			'subscription_embed', 'Newsletter Embed Code', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('subscription_embed', 'memo', 'Subscribe', 'Newsletter signup form embed code.')
+			'subscription_embed',
+			'Newsletter Embed Code', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('subscription_embed',
+			'memo',
+			'',
+			'Newsletter signup form embed code.')
 		);
 
 
 		add_settings_field(
-			'show_obox_logo', 'Display Obox Logo', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('show_obox_logo', 'checkbox', '', 'Display the Obox logo, creators of The Launchpad, in your footer.')
+			'show_obox_logo',
+			'Display Obox Logo', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('show_obox_logo', 'checkbox', '', 'Display the Obox logo, creators of The Launchpad, in your footer.')
 		);
 
 		add_settings_field(
-			'copyright_text', 'Footer Copyright Text', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('copyright_text', 'text', 'Copyright ' . get_bloginfo("name").' 2012. ', 'Enter in your custom copyright text for the site\'s footer.')
+			'copyright_text',
+			'Footer Copyright Text', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('copyright_text', 'text', 'Copyright ' . get_bloginfo("name").' ' .date( 'Y' ). '. ', 'Enter in your custom copyright text for the site\'s footer.')
 		);
 
 		add_settings_field(
-			'role', 'Minimum User Rights', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('role', 'select', 'administrator', 'Select which users are able to access the front end site.', $options) // ID, Input Type, Default, Excerpt, Options (if Select box) Check this ON to activate launchpad.
-		);
-
-		add_settings_field(
-			'google_analytics', 'Google Analytics ID', array(&$this, 'apollo_input'), 'apollo_display_options', 'apollo_general_settings', array('google_analytics', 'text', '', 'Enter in your Google Analytics ID only. <strong>eg. UA-36324000-1</strong>.')
+			'role',
+			'Minimum User Rights', array(&$this, 'apollo_input'),
+			'apollo_display_options',
+			'apollo_general_settings', array('role', 'select', 'administrator', 'Select which users are able to access the front end site.', $options) // ID, Input Type, Default, Excerpt, Options (if Select box) Check this ON to activate launchpad.
 		);
 
 		// Finally, we register the fields with WordPress
 		register_setting(
-			'apollo_display_options', 'apollo_display_options', array(&$this, 'handle_form')
+			'apollo_display_options',
+			'apollo_display_options', array(&$this, 'handle_form')
 		);
 
 		add_settings_section(
@@ -167,28 +240,44 @@
 		);
 
 		add_settings_field(
-			'facebook', 'Facebook', array(&$this, 'apollo_input'), 'apollo_social_options', 'apollo_general_settings', array('facebook', 'text', '', '')
+			'facebook',
+			'Facebook', array(&$this, 'apollo_input'),
+			'apollo_social_options',
+			'apollo_general_settings', array('facebook', 'text', '', '')
 		);
 
 		add_settings_field(
-			'vimeo', 'Vimeo', array(&$this, 'apollo_input'), 'apollo_social_options', 'apollo_general_settings', array('vimeo', 'text', '', '')
+			'vimeo',
+			'Vimeo', array(&$this, 'apollo_input'),
+			'apollo_social_options',
+			'apollo_general_settings', array('vimeo', 'text', '', '')
 		);
 
 		add_settings_field(
-			'tumblr', 'Tumblr', array(&$this, 'apollo_input'), 'apollo_social_options', 'apollo_general_settings', array('tumblr', 'text', '', '')
+			'tumblr',
+			'Tumblr', array(&$this, 'apollo_input'),
+			'apollo_social_options',
+			'apollo_general_settings', array('tumblr', 'text', '', '')
 		);
 
 		add_settings_field(
-			'wordpress', 'Wordpress', array(&$this, 'apollo_input'), 'apollo_social_options', 'apollo_general_settings', array('wordpress', 'text', '', '')
+			'wordpress',
+			'Wordpress', array(&$this, 'apollo_input'),
+			'apollo_social_options',
+			'apollo_general_settings', array('wordpress', 'text', '', '')
 		);
 
 		add_settings_field(
-			'twitter', 'Twitter', array(&$this, 'apollo_input'), 'apollo_social_options', 'apollo_general_settings', array('twitter', 'text', '', '')
+			'twitter',
+			'Twitter', array(&$this, 'apollo_input'),
+			'apollo_social_options',
+			'apollo_general_settings', array('twitter', 'text', '', '')
 		);
 
 		// Finally, we register the fields with WordPress
 		register_setting(
-			'apollo_social_options', 'apollo_social_options', array(&$this, 'handle_form')
+			'apollo_social_options',
+			'apollo_social_options', array(&$this, 'handle_form')
 		);
 
 		add_settings_section(
@@ -199,25 +288,48 @@
 		);
 
 		add_settings_field(
-			'theme', 'Theme', array(&$this, 'apollo_input'), 'apollo_theme_options', 'apollo_general_settings', array('theme', 'select', '', '', array("Grunge" => "grunge", "Minimal" => "minimal", "Slick Gloss" => "slick-gloss"))
+			'theme',
+			'Theme', array(&$this, 'apollo_input'),
+			'apollo_theme_options',
+			'apollo_general_settings', array('theme',
+			'select',
+			'',
+			'', array("Grunge" => "grunge", "Minimal" => "minimal", "Slick Gloss" => "slick-gloss"))
 		);
 		add_settings_field(
-			'font', 'Font', array(&$this, 'apollo_input'), 'apollo_theme_options', 'apollo_general_settings', array('font', 'select', '', '', array("-- Theme Default --" => "", "Sans Serif" => "sans-serif-style", "Serif Sans Serif" => "serif-sans-style", "Serif" => "serif-style"))
+			'font',
+			'Font', array(&$this, 'apollo_input'),
+			'apollo_theme_options',
+			'apollo_general_settings', array('font', 'select', '', '', array(
+					"-- Theme Default --" => "",
+					"Sans Serif" => "sans-serif-style",
+					"Serif Sans Serif" => "serif-sans-style",
+					"Serif" => "serif-style"
+				)
+			)
 		);
 
 		add_settings_field(
-			'typekit', 'Typekit ID', array(&$this, 'apollo_input'), 'apollo_theme_options', 'apollo_general_settings', array('typekit', 'text', '', 'Enter in the Typekit Kit ID for your custom font.')
+			'typekit',
+			'Typekit ID', array(&$this, 'apollo_input'),
+			'apollo_theme_options',
+			'apollo_general_settings', array('typekit', 'text', '', 'Enter in the Typekit Kit ID for your custom font.')
 		);
 
 		add_settings_field(
-			'logo', 'Logo', array(&$this, 'apollo_input'), 'apollo_theme_options', 'apollo_general_settings', array('logo', 'file', '', '')
+			'logo',
+			'Logo', array(&$this, 'apollo_input'),
+			'apollo_theme_options',
+			'apollo_general_settings', array('logo', 'file', '', '')
 		);
 
 		add_settings_field(
-			'background', 'Background',
-			array(&$this, 'apollo_input'), 'apollo_theme_options', 'apollo_general_settings',
-			array('background', 'file', '', '',
-			array("Blue Haze" => $templateuri."/".$template."/images/bg/2co-bg.jpg",
+			'background',
+			'Background',
+			array(&$this, 'apollo_input'),
+			'apollo_theme_options',
+			'apollo_general_settings',
+			array('background', 'file', '', '', array("Blue Haze" => $templateuri."/".$template."/images/bg/2co-bg.jpg",
 					"aurorarain" => $templateuri."/".$template."/images/bg/aurorarain.jpg",
 					"beachsunset" => $templateuri."/".$template."/images/bg/beachsunset.jpg",
 					"california" => $templateuri."/".$template."/images/bg/california.jpg",
@@ -228,12 +340,14 @@
 					"nightsky" => $templateuri."/".$template."/images/bg/nightsky.jpg",
 					"rocky" => $templateuri."/".$template."/images/bg/rocky.jpg",
 					"silentshore" => $templateuri."/".$template."/images/bg/silentshore.jpg",
-					"texture" => $templateuri."/".$template."/images/bg/texture.jpg"))
+					"texture" => $templateuri."/".$template."/images/bg/texture.jpg")
+			)
 		);
 
 		// Finally, we register the fields with WordPress
 		register_setting(
-			'apollo_theme_options', 'apollo_theme_options', array(&$this, 'handle_form')
+			'apollo_theme_options',
+			'apollo_theme_options', array(&$this, 'handle_form')
 		);
 
 		add_settings_section(
@@ -244,12 +358,22 @@
 		);
 
 		add_settings_field(
-			'order', 'Click and drag the blocks to order them on your landing page', array(&$this, 'apollo_order'), 'apollo_order_options', 'apollo_general_settings', array('Count Down Timer' => 'count-down-timer', 'Video' => 'video', 'Secondary Title &amp; Intro' => 'welcome', 'Email Subscription Form' => 'subs-form', 'Social Links' => 'social-links') // ID, Input Type, Default, Excerpt, Options (if Select box)
+			'order',
+			'Click and drag the blocks to order them on your landing page', array(&$this, 'apollo_order'),
+			'apollo_order_options',
+			'apollo_general_settings', array(
+					'Count Down Timer' => 'count-down-timer',
+					'Video' => 'video',
+					'Secondary Title &amp; Intro' => 'welcome',
+					'Email Subscription Form' => 'subs-form',
+					'Social Links' => 'social-links'
+				) // ID, Input Type, Default, Excerpt, Options (if Select box)
 		);		// Finally, we register the fields with WordPress
 
 		$this->home_page_order_fallback();
 		register_setting(
-			'apollo_order_options', 'apollo_order_options', array(&$this, 'handle_form')
+			'apollo_order_options',
+			'apollo_order_options', array(&$this, 'handle_form')
 		);
 
 		add_settings_section(
@@ -260,10 +384,14 @@
 		);
 
 		add_settings_field(
-			'css', 'Custom CSS', array(&$this, 'apollo_input'), 'apollo_css_options', 'apollo_general_settings', array('css', 'memo', '', '')
+			'css',
+			'Custom CSS', array(&$this, 'apollo_input'),
+			'apollo_css_options',
+			'apollo_general_settings', array('css', 'memo', '', '')
 		);
 		register_setting(
-			'apollo_css_options', 'apollo_css_options', array(&$this, 'handle_form')
+			'apollo_css_options',
+			'apollo_css_options', array(&$this, 'handle_form')
 		);
 
 	}
@@ -281,12 +409,14 @@
 		endforeach;
 		$input .= '</ul>';
 
+		$inactive = '';
+
 		if(!empty($options) && $options != "") :
 			foreach($defaults as $name => $function) :
 				if(!in_array($function, $args))
 					$inactive .= '<li><label for="' . $function . '">' . $name . '<input type="checkbox" id="' . $function . '" name="apollo_order_options[' . $name . ']" value="' . $function . '" /></label></li>';
 			endforeach;
-			if($inactive != "") :
+			if( isset( $inactive ) && $inactive != "") :
 				$input .= '<h2 class="home-page-order">In-active</h2>';
 				$input .= '<ul class="home-page-order">';
 				$input .= $inactive;
@@ -303,18 +433,15 @@
 		$option = 'apollo_'.$active_tab.'_options';
 		$options = get_option($option);
 		$label = "";
-		$id = $args[0];
-		$type = $args[1];
-		$default = $args[2];
-		if ( isset( $args[3] ) ) {
-			$excerpt = $args[3];
-		} else {
-			$excerpt = '';
-		}
+		$id =  ( isset( $args[0] ) ? $args[0] : '' );
+		$type =  ( isset( $args[1] ) ? $args[1] : '' );
+		$default = ( isset( $args[2] ) ? $args[2] : '' );
+		$excerpt = ( isset( $args[3] ) ? $args[3] : '' );
+
 
 		if($type == "checkbox" && isset($options[$id])) :
 			$value = "1";
-		elseif(isset($options[$id])) :
+		elseif( isset($options[$id])) :
 			$value = $options[$id];
 		else :
 			$value = $default;
@@ -325,20 +452,24 @@
 			if(isset($options[$id])) { $checked = 'checked="checked"'; };
 			$input = '<input type="checkbox" id="' . $id . '" name="' . $option . '[' . $id . ']" ' . $checked . '/>';
 		elseif ($type == "file") :
+
 			$checked = '';
 			$count = 0;
 			$selected = 0;
 			$images = "";
 			$uploaded = array();
-			$uploaded = get_posts( array( 'post_type' => 'attachment', 'meta_key' => '_apollo_related_image', 'meta_value' => $id, 'orderby' => 'none', 'nopaging' => true ) );
-			if($value != ""){
-				$checked = 'checked="checked"';
-			}
-			else {
 				$uploadclass='';
+			$uploaded = get_posts( array( 'post_type' => 'attachment',
+			'meta_key' => '_apollo_related_image',
+			'meta_value' => $id,
+			'orderby' => 'none',
+			'nopaging' => true ) );
+			if( $value != "" ){
+				$checked = 'checked="checked"';
+			} else {
 				$uploadclass='class="no_display"';
 			}
-			$input = '<label class="clear" for="clear-' . $id . '"><input id="clear-' . $id . '" name="" type="checkbox" ' . $checked . ' /> Enable ' . $id . ' </label>';
+			$input = '<input id="clear-' . $id . '" name="" type="checkbox" ' . $checked . ' /> <label class="clear" for="clear-' . $id . '">Enable ' . $id . ' </label>';
 			$input .= '<div ' . $uploadclass . '>';
 			$input .= '<input type="file" id=upload-"' . $id . '" name="' . $id . '_file" />';
 			$input .= '<input id="no-' . $id . '" name="' . $option . '[' . $id . ']" type="radio" value="" ' . $checked . '" class="no_display" />';
@@ -401,9 +532,8 @@
 			$input = '<input type="text" id="' . $id . '" name="' . $option . '[' . $id . ']" value="' . $value . '" />';
 		endif;
 
-		if( !empty($excerpt) && '' != $excerpt )
-			$label = '<label class="clearfix" for="' . $id .'"> '  . $excerpt . '</label>';
-
+		if(!empty($excerpt))
+			$label = '<label for="' . $id .'"> '  . $excerpt . '</label>';
 
 		$input .= '</div>';
 		$html = $input.$label;
@@ -419,7 +549,8 @@
 				$id = media_handle_upload($input, 0);
 				$attachment = wp_get_attachment_image_src( $id, "full");
 				$option = 	str_replace("_file", "", $input);
-				update_post_meta($id, '_apollo_related_image', $option);
+				update_post_meta($id,
+			'_apollo_related_image', $option);
 				$newinput[$option] = $attachment[0];
 			endif;
 		endforeach;

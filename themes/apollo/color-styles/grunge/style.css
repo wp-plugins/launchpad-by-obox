@@ -52,7 +52,7 @@ a:hover{color: #000;}
 	/*-------------------------------------------*/
 	/*- SUBSCRIBE FORM --------------------------*/
 	.subscribe-form{background: #333 url(layout/texture.jpg) top repeat-x; border-radius: 0px;}
-	.subscribe-form input[type=text]{background: #fff; border: none; box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2); border-radius: 0px;}
+	.subscribe-form input[type=text], .subscribe-form input[type=email]{background: #fff; border: none; box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2); border-radius: 0px;}
 	.subscribe-form input[type=submit]{background: url(layout/signup.jpg) center repeat-x; border: none; color: #333; border-radius: 0px;}
 
 

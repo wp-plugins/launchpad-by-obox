@@ -60,11 +60,11 @@ jQuery(document).ready(function() {
 
 		if (jQuery(this).attr("checked") !== "checked") {
 			jQuery("#" + radionid).eq(0).attr("checked", "checked");
-			jQuery(this).parent().next().children("div").eq(0).children("ul").children(".active").removeClass("active");
-			jQuery(this).parent().next().slideUp();
+			jQuery(this).parent().find( '.active').removeClass("active");
+			jQuery(this).parent().find( 'div.no_display').slideUp();
 		} else {
 			jQuery("#"+radionid).eq(0).attr("checked", "");
-			jQuery(this).parent().next().slideDown();
+			jQuery(this).parent().find( 'div.no_display').slideDown();
 		}
 	});
 
