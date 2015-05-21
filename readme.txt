@@ -7,7 +7,7 @@ Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-From the makers of Layers, Launchpad by Obox is the best looking holding page for your WordPress site. Great for “coming soon”, “down for maintenance” or launch pages.
+Deploys a beautiful, responsive Coming Soon or Down for Maintenance page for your site. Collect emails, change styles, show social links and more
 
 == Description ==
 
