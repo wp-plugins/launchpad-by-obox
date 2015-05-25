@@ -125,4 +125,3 @@ Yep, you can even set the security levels of who can view the front end while lo
 
 = 1.0 =
 * Launchpad launched.
-
