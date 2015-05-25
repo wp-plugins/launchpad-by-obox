@@ -1,11 +1,11 @@
-<?php 
+<?php
 /*
    	Plugin Name: Launchpad by Obox
-   	Plugin URI: http://obox-design.com
+   	Plugin URI: http://oboxthemes.com
    	Description: The best looking maintenance plugin on the net
 	Author: Obox Design
 	Version: 1.0.4
-	Author URI: http://www.obox-design.com
+	Author URI: http://oboxthemes.com
 */
 
 define("LAUNCHPADDIR", ABSPATH."wp-content/plugins/launchpad-by-obox/");
