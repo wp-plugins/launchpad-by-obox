@@ -11,7 +11,7 @@ Launchpad is a free WordPress landing page plugin.
 
 == Description ==
 
-[Launchpad](http://www.obox-design.com/launchpad.cfm "The ultimate pre-launch landing page plugin") is a free, responsive landing page plugin for all WordPress users, by Obox Themes.
+[Launchpad](http://oboxthemes.com/launchpad.cfm "The ultimate pre-launch landing page plugin") is a free, responsive landing page plugin for all WordPress users, by Obox Themes.
 
 = What is Launchpad? =
 A WordPress plugin that allows you to setup a beautiful pre-launch landing page to let users know what you're launching and when you're launching it.
@@ -82,15 +82,15 @@ Add links to your favorite social networks, including Twitter, Facebook, WordPre
 
 Yes you can, just make sure you are running WordPress 3.3 or higher.
 
-= Do I need an Obox theme to use this plugin? = 
+= Do I need an Obox theme to use this plugin? =
 
 Nope, it works on any type of WordPress install.
 
-= Can I hide the Obox badge at the bottom of the screen? = 
+= Can I hide the Obox badge at the bottom of the screen? =
 
 Yes, there is a checkbox in the General Settings area which allows you to hide the Obox badge.
 
-= Can I still view the front end of my site when I am logged in? = 
+= Can I still view the front end of my site when I am logged in? =
 
 Yep, you can even set the security levels of who can view the front end while logged in. This can be set in under the General settings tab.
 
