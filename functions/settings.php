@@ -86,7 +86,7 @@
 				<p>
 					<a href="http://www.layerswp.com/" target="_blank">Layers</a> is a revolutionary new site builder that makes creating beautiful, responsive websites, fast, fun and easy.
 				</p>
-				<a class="go-to-layers" href="http://www.layerswp.com/" target="_blank">Find out more</a>
+				<a class="go-to-layers" href="http://bit.ly/layers-launchpad" target="_blank">Find out more</a>
 			</div>
 
 			<div class="lp-settings-section">

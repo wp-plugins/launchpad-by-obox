@@ -2,8 +2,8 @@
 Contributors: obox
 Tags: maintenance mode, landing page, splash screen
 Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 1.0.6
+Tested up to: 4.2.2
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,9 @@ Yep, you can even set the security levels of who can view the front end while lo
 3. Control the look and feel
 
 == Changelog ==
+
+= 1.0.7 =
+* Layers link update
 
 = 1.0.6 =
 * Fixed any base file warnings
